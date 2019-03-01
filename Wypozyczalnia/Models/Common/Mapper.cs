@@ -22,5 +22,16 @@ namespace Wypozyczalnia.Models.Common
                 Nazwisko = autor.Nazwisko
             };
         }
+
+        public static KlientDto Map(Klient klient)
+        {
+            return klient == null ?
+                                    null :
+                                    new KlientDto
+                                    {
+                                        Identyfikator = klient.Id,
+                                        Nazwisko = klient.Nazwisko
+                                    };
+        }
     }
 }

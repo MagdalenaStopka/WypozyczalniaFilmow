@@ -72,11 +72,20 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\KlientAddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\KlientEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Models\Common\Mapper.cs" />
+    <Compile Include="Models\Services\KlientService.cs" />
     <Compile Include="Views\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -86,6 +95,12 @@
     </Compile>
     <Compile Include="Views\AutorEditView.xaml.cs">
       <DependentUpon>AutorEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\KlientAddView.xaml.cs">
+      <DependentUpon>KlientAddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\KlientEditView.xaml.cs">
+      <DependentUpon>KlientEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

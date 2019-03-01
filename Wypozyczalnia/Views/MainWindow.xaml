@@ -18,6 +18,16 @@
         <Button x:Name="AddAuthorBTN" Content="Dodaj autora" HorizontalAlignment="Left" Margin="0,350,0,0" VerticalAlignment="Top" Width="131" Click="AddAuthorBTN_Click"/>
         <Button x:Name="RefreshAuthorsBTN" Content="Odśwież listę" HorizontalAlignment="Left" Margin="0,375,0,0" VerticalAlignment="Top" Width="131" Click="RefreshAuthorsBTN_Click"/>
         <Button x:Name="EditAuthorsBTN" Content="Edytuj" HorizontalAlignment="Left" Margin="136,249,0,0" VerticalAlignment="Top" Width="131" Click="EditAuthorsBTN_Click"/>
-       
+        <ListView x:Name="ClientListView" HorizontalAlignment="Left" Height="262" Margin="617,88,0,0" VerticalAlignment="Top" Width="100">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="AddClientBTN" Content="Dodaj klienta" HorizontalAlignment="Left" Margin="617,355,0,0" VerticalAlignment="Top" Width="75" Click="AddClientBTN_Click"/>
+        <Button x:Name="RefreshClientsBTN" Content="Odśwież listę" HorizontalAlignment="Left" Margin="617,380,0,0" VerticalAlignment="Top" Width="75" Click="RefreshClientsBTN_Click"/>
+        <Button x:Name="EditClientsBTN" Content="Edytuj" HorizontalAlignment="Left" Margin="770,249,0,0" VerticalAlignment="Top" Width="75" Click="EditClientsBTN_Click"/>
+        <Label Content="Klienci" HorizontalAlignment="Left" Margin="617,54,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

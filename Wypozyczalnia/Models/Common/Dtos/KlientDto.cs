@@ -10,5 +10,12 @@ namespace Wypozyczalnia.Models.Common.Dtos
     {
         public int Identyfikator { get; set; }
         public string Nazwisko { get; set; }
+
+        public override string ToString()
+        {
+            return Nazwisko;
+        }
     }
+
+
 }

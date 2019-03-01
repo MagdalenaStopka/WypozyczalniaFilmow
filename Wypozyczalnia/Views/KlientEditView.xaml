@@ -1,14 +1,14 @@
-﻿<Window x:Class="Wypozyczalnia.Views.AutorEditView"
+﻿<Window x:Class="Wypozyczalnia.Views.KlientEditView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wypozyczalnia.Views"
         mc:Ignorable="d"
-        Title="Edytuj autora" Height="450" Width="800">
+        Title="Edytuj klienta" Height="450" Width="800">
     <Grid>
-       
-        <TextBox x:Name="AutorNazwiskoTxtBox" HorizontalAlignment="Left" Height="23" Margin="77,164,0,0" TextWrapping="Wrap" Text="Podaj poprawoione nazwisko" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="KlientNazwiskoTxtBox" HorizontalAlignment="Left" Height="23" Margin="77,164,0,0" TextWrapping="Wrap" Text="Podaj poprawoione nazwisko" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="ZapiszZmianyBTN" Content="Zapisz zmiany" HorizontalAlignment="Left" Margin="77,214,0,0" VerticalAlignment="Top" Width="120" Click="ZapiszZmianyBTN_Click"/>
     </Grid>
+
 </Window>
