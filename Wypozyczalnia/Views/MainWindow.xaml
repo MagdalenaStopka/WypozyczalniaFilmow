@@ -1,0 +1,23 @@
+﻿<Window x:Class="Wypozyczalnia.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wypozyczalnia"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <ListView x:Name="AuthorsListView" HorizontalAlignment="Left" Height="262" Margin="0,88,0,0" VerticalAlignment="Top" Width="131">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Content="Autorzy" HorizontalAlignment="Left" Margin="14,54,0,0" VerticalAlignment="Top" Height="29" Width="117"/>
+        <Button x:Name="AddAuthorBTN" Content="Dodaj autora" HorizontalAlignment="Left" Margin="0,350,0,0" VerticalAlignment="Top" Width="131" Click="AddAuthorBTN_Click"/>
+        <Button x:Name="RefreshAuthorsBTN" Content="Odśwież listę" HorizontalAlignment="Left" Margin="0,375,0,0" VerticalAlignment="Top" Width="131" Click="RefreshAuthorsBTN_Click"/>
+        <Button x:Name="EditAuthorsBTN" Content="Edytuj" HorizontalAlignment="Left" Margin="136,249,0,0" VerticalAlignment="Top" Width="131" Click="EditAuthorsBTN_Click"/>
+       
+    </Grid>
+</Window>

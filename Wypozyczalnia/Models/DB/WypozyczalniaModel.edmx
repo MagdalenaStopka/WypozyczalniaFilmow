@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WypozyczalniaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Autor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwisko" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Film">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tytul" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdAutor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Klient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwisko" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Wyporzyczenia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdFilm" Type="int" Nullable="false" />
+          <Property Name="IdKlient" Type="int" Nullable="false" />
+          <Property Name="DataDo" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Film_Autor">
+          <End Role="Autor" Type="Self.Autor" Multiplicity="1" />
+          <End Role="Film" Type="Self.Film" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Film">
+              <PropertyRef Name="IdAutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Film_Film">
+          <End Role="Film" Type="Self.Film" Multiplicity="1" />
+          <End Role="Film1" Type="Self.Film" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Film1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wyporzyczenia_Film">
+          <End Role="Film" Type="Self.Film" Multiplicity="1" />
+          <End Role="Wyporzyczenia" Type="Self.Wyporzyczenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Wyporzyczenia">
+              <PropertyRef Name="IdFilm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wyporzyczenia_Klient">
+          <End Role="Klient" Type="Self.Klient" Multiplicity="1" />
+          <End Role="Wyporzyczenia" Type="Self.Wyporzyczenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Wyporzyczenia">
+              <PropertyRef Name="IdKlient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WypozyczalniaModelStoreContainer">
+          <EntitySet Name="Autor" EntityType="Self.Autor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Film" EntityType="Self.Film" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Klient" EntityType="Self.Klient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wyporzyczenia" EntityType="Self.Wyporzyczenia" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Film_Autor" Association="Self.FK_Film_Autor">
+            <End Role="Autor" EntitySet="Autor" />
+            <End Role="Film" EntitySet="Film" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Film_Film" Association="Self.FK_Film_Film">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Film1" EntitySet="Film" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wyporzyczenia_Film" Association="Self.FK_Wyporzyczenia_Film">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Wyporzyczenia" EntitySet="Wyporzyczenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wyporzyczenia_Klient" Association="Self.FK_Wyporzyczenia_Klient">
+            <End Role="Klient" EntitySet="Klient" />
+            <End Role="Wyporzyczenia" EntitySet="Wyporzyczenia" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WypozyczalniaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Autor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwisko" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Films" Relationship="Self.FK_Film_Autor" FromRole="Autor" ToRole="Film" />
+        </EntityType>
+        <EntityType Name="Film">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tytul" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdAutor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Autor" Relationship="Self.FK_Film_Autor" FromRole="Film" ToRole="Autor" />
+          <NavigationProperty Name="Film1" Relationship="Self.FK_Film_Film" FromRole="Film" ToRole="Film1" />
+          <NavigationProperty Name="Film2" Relationship="Self.FK_Film_Film" FromRole="Film1" ToRole="Film" />
+          <NavigationProperty Name="Wyporzyczenias" Relationship="Self.FK_Wyporzyczenia_Film" FromRole="Film" ToRole="Wyporzyczenia" />
+        </EntityType>
+        <EntityType Name="Klient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwisko" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Wyporzyczenias" Relationship="Self.FK_Wyporzyczenia_Klient" FromRole="Klient" ToRole="Wyporzyczenia" />
+        </EntityType>
+        <EntityType Name="Wyporzyczenia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdFilm" Type="Int32" Nullable="false" />
+          <Property Name="IdKlient" Type="Int32" Nullable="false" />
+          <Property Name="DataDo" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Film" Relationship="Self.FK_Wyporzyczenia_Film" FromRole="Wyporzyczenia" ToRole="Film" />
+          <NavigationProperty Name="Klient" Relationship="Self.FK_Wyporzyczenia_Klient" FromRole="Wyporzyczenia" ToRole="Klient" />
+        </EntityType>
+        <Association Name="FK_Film_Autor">
+          <End Role="Autor" Type="Self.Autor" Multiplicity="1" />
+          <End Role="Film" Type="Self.Film" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Film">
+              <PropertyRef Name="IdAutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Film_Film">
+          <End Role="Film" Type="Self.Film" Multiplicity="1" />
+          <End Role="Film1" Type="Self.Film" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Film1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wyporzyczenia_Film">
+          <End Role="Film" Type="Self.Film" Multiplicity="1" />
+          <End Role="Wyporzyczenia" Type="Self.Wyporzyczenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Wyporzyczenia">
+              <PropertyRef Name="IdFilm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wyporzyczenia_Klient">
+          <End Role="Klient" Type="Self.Klient" Multiplicity="1" />
+          <End Role="Wyporzyczenia" Type="Self.Wyporzyczenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Wyporzyczenia">
+              <PropertyRef Name="IdKlient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WypozyczalniaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Autors" EntityType="Self.Autor" />
+          <EntitySet Name="Films" EntityType="Self.Film" />
+          <EntitySet Name="Klients" EntityType="Self.Klient" />
+          <EntitySet Name="Wyporzyczenias" EntityType="Self.Wyporzyczenia" />
+          <AssociationSet Name="FK_Film_Autor" Association="Self.FK_Film_Autor">
+            <End Role="Autor" EntitySet="Autors" />
+            <End Role="Film" EntitySet="Films" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Film_Film" Association="Self.FK_Film_Film">
+            <End Role="Film" EntitySet="Films" />
+            <End Role="Film1" EntitySet="Films" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wyporzyczenia_Film" Association="Self.FK_Wyporzyczenia_Film">
+            <End Role="Film" EntitySet="Films" />
+            <End Role="Wyporzyczenia" EntitySet="Wyporzyczenias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wyporzyczenia_Klient" Association="Self.FK_Wyporzyczenia_Klient">
+            <End Role="Klient" EntitySet="Klients" />
+            <End Role="Wyporzyczenia" EntitySet="Wyporzyczenias" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WypozyczalniaModelStoreContainer" CdmEntityContainer="WypozyczalniaEntities">
+          <EntitySetMapping Name="Autors">
+            <EntityTypeMapping TypeName="WypozyczalniaModel.Autor">
+              <MappingFragment StoreEntitySet="Autor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Films">
+            <EntityTypeMapping TypeName="WypozyczalniaModel.Film">
+              <MappingFragment StoreEntitySet="Film">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tytul" ColumnName="Tytul" />
+                <ScalarProperty Name="IdAutor" ColumnName="IdAutor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klients">
+            <EntityTypeMapping TypeName="WypozyczalniaModel.Klient">
+              <MappingFragment StoreEntitySet="Klient">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wyporzyczenias">
+            <EntityTypeMapping TypeName="WypozyczalniaModel.Wyporzyczenia">
+              <MappingFragment StoreEntitySet="Wyporzyczenia">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdFilm" ColumnName="IdFilm" />
+                <ScalarProperty Name="IdKlient" ColumnName="IdKlient" />
+                <ScalarProperty Name="DataDo" ColumnName="DataDo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

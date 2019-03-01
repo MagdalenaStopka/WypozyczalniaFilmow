@@ -1,0 +1,16 @@
+﻿<Window x:Class="Wypozyczalnia.Views.AutorAddView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wypozyczalnia.Views"
+        mc:Ignorable="d"
+        Title="AutorAddView" Height="450" Width="800">
+    <Grid>
+     
+        <TextBox x:Name="NazwiskoAutoraTxtBox"  HorizontalAlignment="Left" Height="23" Margin="71,100,0,0" TextWrapping="Wrap" Text="Wprowadź nazwisko" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="Zapisz"  Content="Zapisz" HorizontalAlignment="Left" Margin="71,128,0,0" VerticalAlignment="Top" Width="75" Click="Zapisz_Click"/>
+
+
+    </Grid>
+</Window>
